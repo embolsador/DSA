@@ -9,6 +9,20 @@ public class recursion{
     //     printnumb(n-1);
     // }
 
+
+    // print x^n
+
+public static int calculatepower(int x, int n ){
+    if(n == 0){
+        return 1;
+    }
+    if(x == 0){
+        return 0;
+    }
+    int pownm1 = calculatepower(x, n-1);
+    int power = x * pownm1;
+    return power;
+}
     public static void printfib(int a, int b, int n){
         if(n == 0){
             return;
@@ -45,10 +59,13 @@ public class recursion{
     }
     public static void main(String[] args) {
 
-        int a = 0, b = 1, n = 7;
-        System.out.println(a);
-        System.out.println(b);
-        printfib(a, b, n-2);
+        int x = 2, n = 5;
+        int ans = calculatepower(x, n);
+        System.out.println(ans);
+        // int a = 0, b = 1, n = 7;
+        // System.out.println(a);
+        // System.out.println(b);
+        // printfib(a, b, n-2);
 
         // int n =5;
         // int ans = calculatefact(n);
