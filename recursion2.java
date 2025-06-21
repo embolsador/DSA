@@ -1,3 +1,6 @@
+
+import java.util.HashSet;
+
 public class recursion2 {
 
     // tower of hanoi
@@ -105,21 +108,62 @@ public class recursion2 {
 
     // print all the subsequences of a string
 
-    public static void subsequences(String str, int idx, String newstr){
+    // public static void subsequences(String str, int idx, String newstr){
+    //     if(idx == str.length()){
+    //         System.out.println(newstr);
+    //         return;
+
+    // }
+    // char currchar = str.charAt(idx);
+    // subsequences(str, idx + 1, newstr + currchar); // include current character
+    // subsequences(str, idx + 1, newstr); // exclude current character
+    // }
+
+     // print all the unique subsequences of a string
+
+     public static void subsequences(String str, int idx, String newstr, HashSet<String> set){
         if(idx == str.length()){
-            System.out.println(newstr);
-            return;
+            if(set.contains(newstr)){
+                return;
+            }else{
+                System.out.println(newstr);
+                set.add(newstr);
+                return;
+            }
 
     }
     char currchar = str.charAt(idx);
-    subsequences(str, idx + 1, newstr + currchar); // include current character
-    subsequences(str, idx + 1, newstr); // exclude current character
+    subsequences(str, idx + 1, newstr + currchar, set); // include current character
+    subsequences(str, idx + 1, newstr, set); // exclude current character
+    }
+
+    // print the keypad combinations of a string
+    public static String[] keypad = {".", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+
+    public static void printcombo (String str, int idx, String combination){
+        if(idx == str.length()){
+            System.out.println(combination);
+            return;
+        }
+
+        char currchar = str.charAt(idx);
+        String mapping = keypad[currchar - '0'];
+
+        for (int i=0; i<mapping.length(); i++){
+            printcombo(str, idx + 1, combination + mapping.charAt(i));
+        }
+
     }
 
     public static void main(String[] args) {
 
-        String str = "abc";
-        subsequences(str, 0, "");
+        String str = "3";
+        printcombo(str, 0, "");
+        // String str = "aaa";
+        // HashSet<String> set = new HashSet<>();
+        // subsequences(str, 0, "",set);
+
+
         // removeduplicate(str, 0, "");
 
         // moveallx(str, 0, "", 0);
