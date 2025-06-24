@@ -155,10 +155,43 @@ public class recursion2 {
 
     }
 
+    // printing the all posiible combination of a string 
+
+    public static void printperm(String str, int idx){
+
+        for (int i = 0;i<str.length();i++){
+            char currchar = str.charAt(i);
+            String newstr = str.substring(0, i) + str.substring(i + 1);
+            
+        }
+    }
+
+    // count the total paths in a maze to move from (0,0) to (n,m)
+    public static int countpaths(int n, int m, int i, int j) {
+        // base case
+        if (i == n - 1 && j == m - 1) {
+            return 1; // reached the destination
+        }
+        if (i == n || j == m) {
+            return 0; // out of bounds
+        }
+
+        // move downwards
+        int downpaths = countpaths(n, m, i + 1, j);
+        // move rightwards
+        int rightpaths =  countpaths(n, m, i, j + 1);
+        return downpaths + rightpaths;
+    }
+
     public static void main(String[] args) {
 
-        String str = "3";
-        printcombo(str, 0, "");
+        int n = 3; // Number of rows
+        int m = 3;
+        int totalpaths = countpaths(n, m, 0, 0);
+        System.out.println(totalpaths);
+
+        // String str = "3";
+        // printcombo(str, 0, "");
         // String str = "aaa";
         // HashSet<String> set = new HashSet<>();
         // subsequences(str, 0, "",set);
